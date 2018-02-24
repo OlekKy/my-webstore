@@ -4,17 +4,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.packt.webstore.service.ProductService;
+
+import com.packt.webstore.domain.repository.CustomerRepository;
 
 @Controller
-public class ProductController {
+public class CustomerController {
 
 	@Autowired
-	private ProductService productService;
+	private CustomerRepository customerRepository;
 	
-	@RequestMapping("/products")
+	@RequestMapping("/customers")
 	public String list(Model model) {
-		model.addAttribute("products", productService.getAllProducts() );
-		return "products";
+		
+		model.addAttribute("customers", customerRepository.getAllCustomers());
+		return "customers";
 	}
 }
