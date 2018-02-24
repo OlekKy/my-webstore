@@ -1,10 +1,8 @@
 package com.packt.webstore.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.packt.webstore.domain.Product;
 import com.packt.webstore.domain.repository.ProductRepository;
 import com.packt.webstore.service.ProductService;
@@ -16,9 +14,15 @@ public class ProductServiceImpl implements ProductService {
 	private ProductRepository productRepository;
 	
 	public List<Product> getAllProducts(){
-		List<Product> allProducts = productRepository.getAllProducts();
-		return allProducts;
-		
+		return productRepository.getAllProducts();	
 	}
-
+	
+	public Product getProductById(String productID) {
+		return productRepository.getProductById(productID);
+	}
+	
+	public List<Product> getProductsByCategory(String category){
+		return productRepository.getProductsByCategory(category);
+	}
+	
 }
