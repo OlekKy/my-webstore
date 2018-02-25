@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -27,6 +28,12 @@
 							<p>${product.description}</p>
 							<p>${product.unitPrice} PLN</p>
 							<p>Liczba sztuk w magazynie: ${product.unitsInStock}</p>
+							<p>
+								<a href="<spring:url value="/products/product?id=${product.productId}"/>
+								 " class="btn btn-primary">
+								 <span class="glyphicon-info-sign glyphicon"></span>Szczegóły
+								</a>
+							</p>
 						</div>
 					</div>
 				</div>
