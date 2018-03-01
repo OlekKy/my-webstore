@@ -73,6 +73,16 @@ public class InMemoryProductRepository implements ProductRepository {
 		return productsByCategory;
 	}
 	
+	public List<Product> getProductsByManufacturer(String manufacturer){ // strona 95
+		List<Product> productsByManufacturer = new ArrayList<Product>();
+		for(Product product : listOfProducts) {
+			if(manufacturer.equalsIgnoreCase(product.getManufacturer())) {
+				productsByManufacturer.add(product);
+			}
+		}
+		return productsByManufacturer;
+	}
+	
 	public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams){
 		Set<Product> productsByBrand = new HashSet<Product>();
 		Set<Product> productsByCategory = new HashSet<Product>();
@@ -94,4 +104,44 @@ public class InMemoryProductRepository implements ProductRepository {
 		productsByCategory.retainAll(productsByBrand);
 		return productsByCategory;
 	}
+	
+	public Set<Product> getProductsByPriceFilter(Map<String, List<String>> filterByPrice){
+		Set<Product> productsLowPrice = new HashSet<Product>();
+		Set<Product> productsHighPrice = new HashSet<Product>();
+		Set<String> priceCriterias = filterByPrice.keySet();
+		if (priceCriterias.contains("low")) {
+			for(String lowerPrice : filterByPrice.get("low")) {
+				for(Product product : listOfProducts) {
+					BigDecimal lowerPrice1 = new BigDecimal(lowerPrice);
+					if (product.getUnitPrice().compareTo(lowerPrice1)>=0) {
+						productsLowPrice.add(product);
+					}
+				}
+			}
+		}
+		if (priceCriterias.contains("high")) {
+			for(String higherPrice : filterByPrice.get("high")) {
+				for(Product product : listOfProducts) {
+					BigDecimal higherPrice1 = new BigDecimal(higherPrice);
+					if(product.getUnitPrice().compareTo(higherPrice1)<=0) {
+						productsHighPrice.add(product);
+					}
+				}
+			}
+		}
+		productsHighPrice.retainAll(productsLowPrice);
+		return productsHighPrice;
+	}
+	 public Set<Product> getProductsByFilters(String category, Map<String, List<String>> filterByPrice, 
+			 String manufacturer){
+		 
+		 List<Product> listOfProductsByCategory = getProductsByCategory(category);
+		 List<Product> listOfProductsByManufacturer = getProductsByManufacturer(manufacturer);
+		 Set<Product> listOfProductsByPriceFilter =  getProductsByPriceFilter(filterByPrice);
+		 listOfProductsByPriceFilter.retainAll(listOfProductsByCategory);
+		 listOfProductsByPriceFilter.retainAll(listOfProductsByManufacturer);
+		// listOfProductsByCategory.retainAll(listOfProductsByManufacturer);
+		// listOfProductsByCategory.retainAll(listOfProductsByPriceFilter);
+		 return listOfProductsByPriceFilter;
+	 }
 }
