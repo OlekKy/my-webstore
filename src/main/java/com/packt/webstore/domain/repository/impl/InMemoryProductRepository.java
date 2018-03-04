@@ -144,4 +144,9 @@ public class InMemoryProductRepository implements ProductRepository {
 		// listOfProductsByCategory.retainAll(listOfProductsByPriceFilter);
 		 return listOfProductsByPriceFilter;
 	 }
+	 
+	 public void addProduct(Product product) {
+		 listOfProducts.add(product);
+	 }
+	 
 }
