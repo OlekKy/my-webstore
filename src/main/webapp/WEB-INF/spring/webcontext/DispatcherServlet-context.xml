@@ -57,4 +57,8 @@
 			</bean>
 		</constructor-arg>
 	</bean>
+	
+	<mvc:interceptors>
+		<bean class="com.packt.webstore.interceptor.PerformanceMonitorInterceptor"/>
+	</mvc:interceptors>
 </beans>
