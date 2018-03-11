@@ -11,7 +11,11 @@
 		<section>
 			<div class="jumbotron">
 				<div class="container">
-					<h1>Produkt</h1>
+					<h1><spring:message code="product.h1.product"/></h1>
+				</div>
+				<div class="pull-right" style="padding-right:50px">
+					<a href="id=${product.productId}?language=pl?" >Polski</a>|<a href="?language=en">English</a>|
+					<a href="?language=de?id=${product.productId}">Deutsch</a>
 				</div>
 			</div>
 		</section>
@@ -25,26 +29,27 @@
 					<h3>${product.name}</h3>
 					<p>${product.description}</p>
 					<p>
-						<strong>Kod produktu: </strong><span class="label
+						<strong><spring:message code="product.section.productID"/></strong><span class="label
 						 label-warning">${product.productId}</span>
 					</p>
 					<p>
-						<strong>Producent</strong>: ${product.manufacturer}
+						<strong><spring:message code="product.section.manufacturer"/></strong>: ${product.manufacturer}
 					</p>
 					<p>
-						<strong>Kategoria</strong>: ${product.category}
+						<strong><spring:message code="product.section.category"/></strong>: ${product.category}
 					</p>
 					<p>
-						<strong>Liczba sztuk w magazynie</strong>: ${product.unitsInStock}
+						<strong><spring:message code="product.section.unitsInStock"/></strong>: ${product.unitsInStock}
 					</p>
 					<h4>${product.unitPrice} PLN</h4>
 					<p>
 					<a href="#" class="btn btn-warning btn-large"> 
 						<span class="glyphicon-shopping-cart glyphicon"></span> 
-						Zamów teraz
+						<spring:message code="product.button.orderNow"/>
 					</a> 
 					<a href="<spring:url value="/products" />" class="btn btndefault">
-						<span class="glyphicon-hand-left glyphicon"></span> Wstecz
+						<span class="glyphicon-hand-left glyphicon"></span>
+						<spring:message code="product.button.back"/>
 					</a>
 				</p>
 			</div>
