@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import com.packt.webstore.domain.Product;
 import com.packt.webstore.exception.NoProductsFoundUnderCategoryException;
 import com.packt.webstore.exception.ProductNotFoundException;
 import com.packt.webstore.service.ProductService;
+import com.packt.webstore.validator.ProductValidator;
 
 @Controller
 @RequestMapping("/products")
@@ -34,6 +36,8 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductValidator productValidator;
 	
 	@RequestMapping
 	public String list(Model model) {
@@ -97,9 +101,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddNewProductForm(@ModelAttribute("newProduct") Product newProduct, 
+	public String processAddNewProductForm(@ModelAttribute("newProduct") @Valid Product newProduct, 
 			BindingResult result, HttpServletRequest request) {
-		
+	
+		if (result.hasErrors()) {
+			return "addProduct";
+		}
 		String[] suppressedFields = result.getSuppressedFields();
 		if (suppressedFields.length > 0) {
 			throw new RuntimeException("Proba wiazania niedozwolonych pól: " + 
@@ -134,6 +141,7 @@ public class ProductController {
 	@InitBinder
 	public void initialiseBinder(WebDataBinder binder) {
 		binder.setDisallowedFields("unitsInOrder", "discontinued");
+		binder.setValidator(productValidator);
 	}
 	
 	@ExceptionHandler(ProductNotFoundException.class)
