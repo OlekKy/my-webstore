@@ -8,14 +8,7 @@
 		<title>Witaj</title>
 	</head>
 	<body>
-		<section>
-			<div class="jumbotron">
-				<div class="container">
-					<h1 class="alert alert-danger"> Brak produktu o wskazanym 
-					identyfikatorze: ${invalidProductId}.</h1>
-				</div>
-			</div>
-		</section>
+		
 		<section>
 			<div class="container">
 				<p>${url}</p>

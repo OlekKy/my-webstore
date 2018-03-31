@@ -14,14 +14,7 @@
 <title>Koszyk</title>
 </head>
 <body>
-	<section>
-		<div class="jumbotron">
-			<div class="container">
-				<h1>Koszyk</h1>
-				<p>Produkty w Twoim koszyku</p>
-			</div>
-		</div>
-	</section>
+
 
 	<section class="container" ng-app="cartApp">
 		<div ng-controller="cartCtrl" ng-init="initCartId('${cartId}')">

@@ -9,22 +9,7 @@
 		<title>Produkty</title>
 	</head>
 	<body>
-		<section>
-			<div class="jumbotron">
-				<div class="container">
-					<h1><spring:message code="addProduct.form.h1.products"/></h1>
-					<p><spring:message code="addProduct.form.p.addProducts"/></p>
-				</div>
-				<a href="<c:url value="/j_spring_security_logout" />" class="btn btn-danger btn-mini pull-right">
-					<spring:message code="addProduct.form.button.logout"/>
-				</a>
-				<div class="pull-right" style="padding-right:50px">
-					<a href="?language=pl" >Polski</a>|<a href="?language=en">English</a>|
-					<a href="?language=de">Deutsch</a>
-				</div>
-				
-			</div>
-		</section>
+
 		<section class="container">
 			<form:form modelAttribute="newProduct" class="form-horizontal"
 			enctype="multipart/form-data">
