@@ -1,14 +1,13 @@
 package com.packt.webstore.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 public class CartItem implements Serializable {
 	
 	private static final long serialVersionUID = -4314427089896169685L;
 	private Product product;
 	private int quantity;
-	private BigDecimal totalPrice;
+	private int totalPrice;
 	
 	public CartItem() {
 		this.quantity = 1;
@@ -39,12 +38,12 @@ public class CartItem implements Serializable {
 		this.updateTotalPrice();
 	}
 	
-	public BigDecimal getTotalPrice() {
+	public int getTotalPrice() {
 		return totalPrice;
 	}
 	
 	public void updateTotalPrice() {
-		totalPrice = this.product.getUnitPrice().multiply(new BigDecimal(this.quantity));
+		totalPrice = this.product.getUnitPrice() * (this.quantity);
 	}
 	
 	@Override

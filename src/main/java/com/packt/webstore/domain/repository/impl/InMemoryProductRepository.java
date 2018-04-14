@@ -1,6 +1,5 @@
 package com.packt.webstore.domain.repository.impl;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,21 +18,21 @@ public class InMemoryProductRepository implements ProductRepository {
 	
 	public InMemoryProductRepository() {
 		
-		Product iphone = new Product("P1234","iPhone 5s", new BigDecimal(500));
+		Product iphone = new Product("P1234","iPhone 5s", 500);
 		iphone.setDescription("Apple iPhone 5s, smartfon z 4-calowym ekranem o "
 				+ "rozdzielczosci 640x1136 i 8-megapikselowym aparatem");
 		iphone.setCategory("Smartfon");
 		iphone.setManufacturer("Apple");
 		iphone.setUnitsInStock(1000);
 		
-		Product laptop_dell = new Product("P1235","Dell Inspiron", new BigDecimal(700));
+		Product laptop_dell = new Product("P1235","Dell Inspiron", 700);
 		laptop_dell.setDescription("Dell Inspiron, 14-calowy laptop (czarny) z procesorem"
 				+ " Intel Core 3. generacji");
 		laptop_dell.setCategory("Laptop");
 		laptop_dell.setManufacturer("Dell");
 		laptop_dell.setUnitsInStock(1000);
 		
-		Product tablet_Nexus = new Product("P1236","Nexus 7", new BigDecimal(300));
+		Product tablet_Nexus = new Product("P1236","Nexus 7", 300);
 		tablet_Nexus.setDescription("Google Nexus 7 jest najlzejszym 7-calowym tabletem"
 				+ " z 4-rdzeniowym procesorem Qualcomm Snapdragon S4 Pro");
 		tablet_Nexus.setCategory("Tablet");
@@ -113,8 +112,8 @@ public class InMemoryProductRepository implements ProductRepository {
 		if (priceCriterias.contains("low")) {
 			for(String lowerPrice : filterByPrice.get("low")) {
 				for(Product product : listOfProducts) {
-					BigDecimal lowerPrice1 = new BigDecimal(lowerPrice);
-					if (product.getUnitPrice().compareTo(lowerPrice1)>=0) {
+					//BigDecimal lowerPrice1 = new BigDecimal(lowerPrice);
+					if (product.getUnitPrice() >= (Integer.parseInt(lowerPrice))) {
 						productsLowPrice.add(product);
 					}
 				}
@@ -123,9 +122,8 @@ public class InMemoryProductRepository implements ProductRepository {
 		if (priceCriterias.contains("high")) {
 			for(String higherPrice : filterByPrice.get("high")) {
 				for(Product product : listOfProducts) {
-					BigDecimal higherPrice1 = new BigDecimal(higherPrice);
-					if(product.getUnitPrice().compareTo(higherPrice1)<=0) {
-						productsHighPrice.add(product);
+					//BigDecimal higherPrice1 = new BigDecimal(higherPrice);
+					if (product.getUnitPrice() <= (Integer.parseInt(higherPrice))) {						productsHighPrice.add(product);
 					}
 				}
 			}

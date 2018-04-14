@@ -1,8 +1,6 @@
 package com.packt.webstore.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -28,7 +26,7 @@ public class Product implements Serializable {
 	@Min(value=0, message="{Min.Product.unitPrice.validation}")
 	@Digits(integer=8, fraction=2, message="{Digits.Product.unitPrice.validation}")
 	@NotNull(message="{NotNull.Product.unitPrice.validation}")
-	private BigDecimal unitPrice;
+	private int unitPrice;
 	private String description;
 	private String manufacturer;
 	private String category;
@@ -46,7 +44,7 @@ public class Product implements Serializable {
 		super();
 	}
 	
-	public Product(String productId, String name, BigDecimal unitPrice) {
+	public Product(String productId, String name, int unitPrice) {
 		this.productId = productId;
 		this.name = name;
 		this.unitPrice = unitPrice;
@@ -69,11 +67,11 @@ public class Product implements Serializable {
 		this.name = name;
 	}
 
-	public BigDecimal getUnitPrice() {
+	public int getUnitPrice() {
 		return unitPrice;
 	}
 
-	public void setUnitPrice(BigDecimal unitPrice) {
+	public void setUnitPrice(int unitPrice) {
 		this.unitPrice = unitPrice;
 	}
 

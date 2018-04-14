@@ -1,7 +1,6 @@
 package com.packt.webstore.domain;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,11 +9,11 @@ public class Cart implements Serializable {
 	private static final long serialVersionUID = -4045729241960416615L;
 	private String cartId;
 	private Map<String,CartItem> cartItems;
-	private BigDecimal grandTotal;
+	private int grandTotal;
 	
 	public Cart() {
 		cartItems = new HashMap<String, CartItem>();
-		grandTotal = new BigDecimal(0);
+		grandTotal = 0;
 	}
 	
 	public Cart(String cartId) {
@@ -38,7 +37,7 @@ public class Cart implements Serializable {
 		this.cartItems = cartItems;
 	}
 
-	public BigDecimal getGrandTotal() {
+	public int getGrandTotal() {
 		return grandTotal;
 	}
 
@@ -61,9 +60,9 @@ public class Cart implements Serializable {
 	}
 
 	public void updateGrandTotal() {
-		grandTotal = new BigDecimal(0);
+		grandTotal = 0;
 		for(CartItem item : cartItems.values()) {
-			grandTotal = grandTotal.add(item.getTotalPrice());
+			grandTotal = grandTotal+ (item.getTotalPrice());
 		}
 	}
 	

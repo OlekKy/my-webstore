@@ -26,6 +26,13 @@
 		<put-attribute name="content" value="/WEB-INF/views/products.jsp" />
 	</definition>
 	
+		<definition name="databaseProducts" extends="baseLayout">
+		<put-attribute name="title" value="Produkty" />
+		<put-attribute name="heading" value="Produkty" />
+		<put-attribute name="tagline" value="Dostępne produkty" />
+		<put-attribute name="content" value="/WEB-INF/views/databaseProducts.jsp" />
+		</definition>
+		
 	<definition name="product" extends="baseLayout">
 		<put-attribute name="title" value="Produkty" />
 		<put-attribute name="heading" value="Produkty" />
